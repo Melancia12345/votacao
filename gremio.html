@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="./urna/gremio/gremio.css">
+    <title>Grêmio</title>
+
+
+</head>
+<body>
+    <div class="container">
+        <img class="logo" src="./images/logo.png" alt="Tutoria">
+        <h1>vote em sua chapa</h1>
+        <button onclick="vote('chapa-A')">Votar na chapa-A</button>
+        <button onclick="vote('chapa-B')">Votar na chapa-B</button>
+        <button onclick="vote('chapa-C')">Votar na chapa-C</button>
+        
+        <div class="results">
+            <h2>Resultados</h2>
+            <p>chapa-A: <span id="chapa-A-votes">0</span></p>
+            <p>chapa-B: <span id="chapa-B-votes">0</span></p>
+            <p>chapa-C: <span id="chapa-C-votes">0</span></p>
+        </div>
+    </div>
+
+        
+    <dialog id="voteModal">
+        <div class="metade" id="cima">
+            <div class="circulo2">
+             <img class="x" src="./images/check-png.webp" alt="">
+              
+            </div>
+        </div>
+        <h2 id="modalMessage">Seu voto foi comfirmado!</h2>
+        
+    </dialog>
+    <ul>   
+        <li><a href="../projetotcc2024/tela de bem vindo.html">Voltar</a>
+        
+        </li>
+        <li>
+         <a href="./sup.html">Suporte</a>
+        </li> 
+      </ul>
+    
+    <script src="./urna/gremio/gremio.js"></script>
+
+
+</body>
+</html>

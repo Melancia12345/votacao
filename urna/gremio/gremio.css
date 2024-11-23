@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: linear-gradient(90deg, rgba(15,12,41,1) 0%, rgba(48,43,99,1) 35%, rgba(36,36,62,1) 100%);
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgba(9, 22, 136, 0.336);
+    box-shadow: 8px 8px 35px rgb(2, 0, 3); 
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    background-color: rgb(48, 27, 155);
+    color: rgb(238, 227, 227);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    color: black;
+    background-color: white;
+}
+
+.results {
+    margin-top: 20px;
+    color: aliceblue;
+}
+
+.results p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: aliceblue;
+}
+
+.logo {
+    max-width: 300px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.metade {
+    height: 260px;
+    border-radius: 1px;
+}
+
+.circulo2 {
+    width: 115px;
+    height: 115px;
+    border: solid 10px #0bb962;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    margin-top: -70px;
+    align-items: center;
+}
+
+#cima {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.x {
+    height: 60px;
+}
+
+#voteModal {
+    border-radius: 15px;
+}
+
+a {
+    color: #ffffff; /* Cor do texto do link ao passar o mouse */
+    text-decoration: none; /* Remove o sublinhado padrão dos links */
+    display: inline-block; /* Permite aplicar padding e margin */
+    transition: 0.2s; /* Transição suave para propriedades alteradas */
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none; /* Remove os marcadores das listas */
+    padding: 0; /* Remove o padding padrão */
+    margin: 0; /* Remove a margem padrão */
+    text-align: center; /* Alinha o conteúdo da lista ao centro */
+}
+
+ul li {
+    display: inline-block; /* Exibe itens da lista horizontalmente */
+    padding: 0 30px; /* Espaçamento horizontal ao redor dos itens */
+    font-size: 20px; /* Tamanho da fonte dos itens da lista */
+}
+
+a:hover {
+    color: #1dd1f1; /* Cor do texto dos links ao passar o mouse */
+    transform: scale(1.05); /* Aumenta o tamanho do link levemente */
+    transition: 0.2s; /* Transição suave para o efeito de transformação */
+}
+
+

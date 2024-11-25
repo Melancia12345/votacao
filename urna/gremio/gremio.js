@@ -1,6 +1,3 @@
-if (typeof(Storage) === "undefined") {
-  alert("Seu navegador não suporta armazenamento local. O sistema pode não funcionar corretamente.");
-}
 
 if (!localStorage.getItem('votes')) {
   initializeVotes();
@@ -20,14 +17,11 @@ function updateResults() {
 
 function vote(candidate) {
   const votes = JSON.parse(localStorage.getItem('votes') || "{}");
-  if (!votes.hasOwnProperty(candidate)) {
-    showErrorModal('Candidato inválido! Tente novamente.');
-    return;
-  }
+ 
   votes[candidate]++;
   localStorage.setItem('votes', JSON.stringify(votes));
   updateResults(); 
-  showVoteModal(`Voto computado para ${candidate}!`);
+  showVoteModal(` seu Voto  na  ${candidate} foi comfirmado!`);
 }
 
 
@@ -38,7 +32,7 @@ function showVoteModal(message) {
 
   // Espera 5 segundos antes de redirecionar
   setTimeout(() => {
-    modal.close(); // Fecha o modal antes de redirecionar
+   
     window.location.href = './index.html'; // Substitua pela URL desejada
   }, 3000); // 5000 ms = 5 segundos
 }

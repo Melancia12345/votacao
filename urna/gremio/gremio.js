@@ -21,7 +21,7 @@ function vote(candidate) {
   votes[candidate]++;
   localStorage.setItem('votes', JSON.stringify(votes));
   updateResults(); 
-  showVoteModal(` seu Voto  na  ${candidate} foi comfirmado!`);
+  showVoteModal(` seu Voto  na  ${candidate} foi confirmado!`);
 }
 
 

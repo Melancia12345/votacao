@@ -23,76 +23,95 @@ const botao = document.querySelector("#botao");
 
 var okButton = document.querySelector('#okButton');
 const modal = document.querySelector("#modal");
-const modal2 = document.querySelector("#modal2");
-var okButton2 = document.querySelector('#okButton2');
+
+
+const emailForm = document.querySelector("#emailForm");
+const emailNome = document.querySelector("#emailNome");
+const emailSeries = document.querySelector("#emailSeries");
+const emailEscolha = document.querySelector("#emailEscolha");
+
 // Função POST
 async function POST() {
   const url = "https://urna-ec7a7-default-rtdb.firebaseio.com/clube.json";
-  
+
   const newData = {
     nome: nomeInput.value,
-    serie: seriesInput.value,
-    escolha: escolhaInput.value
     
   };
 
   try {
     const response = await fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(newData)
+      body: JSON.stringify(newData),
     });
 
     const data = await response.json();
-    console.log(data);
+    console.log("Dados enviados ao Firebase:", data);
   } catch (error) {
-    console.error(error);
+    console.error("Erro ao enviar ao Firebase:", error);
   }
 }
-// Adiciona um ouvinte de evento para o campo de entrada nomeInput
-nomeInput.addEventListener("keypress", function(e) {
-  
-  // Obtém o código da tecla pressionada, usando keyCode ou which dependendo da compatibilidade do navegador
-  const keyCode = (e.keyCode ? e.keyCode : e.which);
-  
-  // Verifica se o código da tecla está entre 48 e 57 (que são os códigos ASCII dos números 0 a 9)
-  if (keyCode > 47 && keyCode < 58) {
-    
-    // Se for um número, impede que o número seja inserido no campo de texto
-    e.preventDefault();
-  }
-});
 
-// Validação dos dados e envio ao clicar no botão
-botao.addEventListener('click', () => {
-  // Verificação de dados vazios ou incompletos
-  if (nomeInput.value === '' ||   nomeInput.value.length < 9) {
-    // Exibir modal de erro
-    modal.showModal(); 
-    
+// Verificar se o nome já existe no Firebase
+async function verificarNomeExistente(nome) {
+  const url = "https://urna-ec7a7-default-rtdb.firebaseio.com/clube.json";
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    for (const key in data) {
+      if (data[key].nome === nome) {
+        return true;
+      }
+    }
+    return false;
+  } catch (error) {
+    console.error("Erro ao verificar nome:", error);
+    return false;
   }
-  
-  
-  else {
-    // Exibir modal de sucesso
-    modal2.showModal();
-      POST(); // Chamar a função POST depois de fechar o modal
+}
+
+// Ação do botão de envio
+botao.addEventListener("click", async () => {
+  if (nomeInput.value === "" || nomeInput.value.length < 9) {
+    modal.showModal();
+  } else {
+    const nomeExistente = await verificarNomeExistente(nomeInput.value);
+
+    if (nomeExistente) {
+      // Nome já existe: exibe modal de erro
+      modal.showModal();
+    } else {
+      // Nome não existe: executa POST e envia e-mail
+      await POST();
+
+      // Preenche os campos ocultos do formulário de e-mail
+      emailNome.value = nomeInput.value;
+      emailSeries.value = seriesInput.value;
+      emailEscolha.value = escolhaInput.value;
+
+      // Submete o formulário ao e-mail
+      emailForm.submit();
+
+      // Exibe modal de sucesso
+      modal2.showModal();
       botao.disabled = true;
-      botao.style.backgroundColor = 'gray';
-      botao.style.cursor = 'not-allowed';
+      botao.style.backgroundColor = "gray";
+      botao.style.cursor = "not-allowed";
+      setTimeout(() => {
+   
+        window.location.href = "./tela de bem vindo.html"; 
+      }, 2000); // 5000 ms = 5 segundos
+    }
+      
+    }
   }
-});
-document.addEventListener('DOMContentLoaded', () => {
-    // Fechar o primeiro modal
-    okButton.addEventListener('click', () => {
-      modal.close();
-    });
-  
-    // Fechar o segundo modal corretamente
-    okButton2.addEventListener('click', () => {
-      modal2.close(); // Correção: agora fecha o modal2, não o modal
-    });
-  });
-  
+);
+
+// Fechar modais
+okButton.addEventListener("click", () => modal.close());
+
